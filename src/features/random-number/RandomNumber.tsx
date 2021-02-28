@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Circle from '../../components/circle/Circle';
 import Spinner from '../../components/spinner/Spinner';
 
 const RandomNumber = () => {
+    const [speed, setSpeed] = useState(3);
+    const [go, setGo] = useState(false);
+
     return (
         <div>
-            <Spinner>
+            <Spinner speed={speed} go={go}>
                 <Circle pos={[100, 0]} size={50}/>
                 <Circle pos={[-100, 0]} size={50}/>
             </Spinner>
+
+            <button onClick={() => setGo(!go)}> {go ? 'Again' : 'Go'} </button>
+
+            {/* <div style={{background: 'green', width: 150, height: 150, transform:'translate(-50%, -50%)', borderRadius: '50%', top: '50%', left: '50%', position: 'absolute'}}></div> */}
         </div>
     );
 }
