@@ -6,3 +6,19 @@
     transform: translate(-50%, -50%);
 
 }
+
+.circle-spin {
+    animation: circle-spin-anim 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes circle-spin-anim {
+    0% {
+        transform: translate(-50%, -50%) rotate(359deg) ;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+}

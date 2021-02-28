@@ -9,8 +9,8 @@ const RandomNumber = () => {
     return (
         <div>
             <Spinner speed={speed} go={go}>
-                <Circle pos={[100, 0]} size={50}/>
-                <Circle pos={[-100, 0]} size={50}/>
+                <Circle pos={[100, 0]} size={50} text={go ? '' : '1'} spin={!go}/>
+                <Circle pos={[-100, 0]} size={50} text={go ? '' : '2'} spin={!go} />
             </Spinner>
 
             <button onClick={() => setGo(!go)}> {go ? 'Again' : 'Go'} </button>

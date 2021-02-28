@@ -4,6 +4,8 @@ import './circle.css';
 interface Props {
     pos: [number, number]
     size: number
+    text?: string
+    spin?: boolean
 }
 
 const Circle = (props: Props) => {
@@ -15,8 +17,8 @@ const Circle = (props: Props) => {
     }
 
     return (
-        <div className='circle' style={style}>
-            
+        <div className={`circle ${props.spin ? 'circle-spin' : ''}`} style={style}>
+            <p> {props.text} </p>
         </div>
     );
 }
