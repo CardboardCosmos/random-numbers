@@ -19,33 +19,30 @@ const RandomNumber = () => {
     
     useEffect(() => {
         // calculate spinner position (middle of area above options div)
-    const handleResize = () => {
-        
-        if (optionsDiv.current) {
-            // set spinner position
-            setSpinnerPos((window.innerHeight - optionsDiv.current.offsetHeight) / 2);
+        const handleResize = () => {
+            if (optionsDiv.current) {
+                // set spinner position
+                setSpinnerPos((window.innerHeight - optionsDiv.current.offsetHeight) / 2);
 
-            // set spinner radius
-            let radiusDimension; // width or height, whichever is smaller 
-            if (window.innerHeight - optionsDiv.current.offsetHeight < window.innerWidth)
-                radiusDimension = window.innerHeight - optionsDiv.current.offsetHeight;
-            else 
-                radiusDimension = window.innerWidth;
+                // set spinner radius
+                let radiusDimension; // width or height, whichever is smaller 
+                if (window.innerHeight - optionsDiv.current.offsetHeight < window.innerWidth)
+                    radiusDimension = window.innerHeight - optionsDiv.current.offsetHeight;
+                else 
+                    radiusDimension = window.innerWidth;
 
-            radiusDimension *= 0.3 / 100;
-            setSpinnerScale(radiusDimension);
-            // console.log(radiusDimension)
+                radiusDimension *= 0.3 / 100;
+                setSpinnerScale(radiusDimension);
 
-
-        } else {
-            setSpinnerPos(window.innerHeight / 2);
+            } else {
+                setSpinnerPos(window.innerHeight / 2);
+            }
         }
-    }
 
         handleResize();
 
         window.addEventListener('resize', handleResize);
-        console.log('hi')
+
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
