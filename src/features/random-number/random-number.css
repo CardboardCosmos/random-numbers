@@ -73,3 +73,32 @@
         transform: translate(-50%, -50%) scale(1.0);
     }
 }
+
+.again-btn {
+    position: relative;
+    top: 80vh;
+    opacity: 0;
+}
+
+.show-again-btn {
+    animation: show-again-btn;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes show-again-btn {
+    0% {
+        top: 100vh;
+        opacity: 0;
+    }
+
+    90% {
+        top: 100vh;
+        opacity: 0;
+    }
+
+    100% {
+        top: 80vh;
+        opacity: 1.0;
+    }
+}

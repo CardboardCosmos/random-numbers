@@ -57,7 +57,7 @@ const RandomNumber = () => {
                 {positions.map((p, idx) => <Circle key={idx} pos={p} size={circleSize} text={go ? '' : (minNumber + idx).toString()} spin={!go}/>)}
             </Spinner>
 
-            <Button className="rng-go-btn" onClick={() => genRandom()} size={80} visible={!go} > {go ? 'Again' : 'Go'} </Button>
+            <Button className="rng-go-btn" onClick={() => genRandom()} size={80} visible={!go} > Go </Button>
 
             <div className={`random-number ${go ? 'random-number-show' : ''}`}>
                 <h1>{randomNumber}</h1>
@@ -66,20 +66,21 @@ const RandomNumber = () => {
             <div className={`rng-options ${go ? 'rng-options-hide' : ''}`}>
                 <div className="rng-option">
                     <h2 className="option-title">Min</h2>
-                    {/* <button onClick={() => updateMin(minNumber + 1)}>+</button> */}
-                    <Button onClick={() => updateMin(minNumber + 1)}>+</Button>
+                    <Button onClick={() => updateMin(minNumber + 1)} size={30}>+</Button>
                     <h3>{minNumber}</h3>
-                    <button onClick={() => updateMin(minNumber - 1)}>-</button>
+                    <Button onClick={() => updateMin(minNumber - 1)} size={30}>-</Button>
                 </div>
                 
                 <div className="rng-option">
                     <h2 className="option-title">Max</h2>
-                    <button onClick={() => updateMax(maxNumber + 1)}>+</button>
+                    <Button onClick={() => updateMax(maxNumber + 1)} size={30}>+</Button>
                     <h3>{maxNumber}</h3>
-                    <button onClick={() => updateMax(maxNumber - 1)}>-</button>
+                    <Button onClick={() => updateMax(maxNumber - 1)} size={30}>-</Button>
                 </div>
                 
             </div>
+
+            <Button className={`again-btn ${go ? 'show-again-btn' : ''}`} onClick={() => setGo(false)} size={100}>Again</Button>
         </div>
     );
 }
