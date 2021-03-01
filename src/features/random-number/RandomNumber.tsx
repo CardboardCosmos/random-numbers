@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Circle from '../../components/circle/Circle';
 import Spinner from '../../components/spinner/Spinner';
+import './random-number.css';
 
 const RandomNumber = () => {
     const [speed, setSpeed] = useState(3);
@@ -12,7 +13,7 @@ const RandomNumber = () => {
 
     // calculate spinning circle radius and item positions
     useEffect(() => {
-        let radius = 100;
+        const radius = 100;
         const pos: [number, number][] = [];
         const nItems = maxNumber - minNumber + 1;
         const angle = 2 * Math.PI / nItems;  // angle between each item
@@ -30,15 +31,29 @@ const RandomNumber = () => {
     return (
         <div>
             <Spinner speed={speed} go={go}>
-                {/* <Circle pos={[100, 0]} size={50} text={go ? '' : '1'} spin={!go}/>
-                <Circle pos={[-100, 0]} size={50} text={go ? '' : '2'} spin={!go} /> */}
-
                 {positions.map((p, idx) => <Circle key={idx} pos={p} size={circleSize} text={go ? '' : (minNumber + idx).toString()} spin={!go}/>)}
             </Spinner>
 
-            <button onClick={() => setGo(!go)}> {go ? 'Again' : 'Go'} </button>
+            <button className="rng-go-btn" onClick={() => setGo(!go)}> {go ? 'Again' : 'Go'} </button>
 
             {/* <div style={{background: 'green', width: 150, height: 150, transform:'translate(-50%, -50%)', borderRadius: '50%', top: '50%', left: '50%', position: 'absolute'}}></div> */}
+
+            <div className="rng-options">
+                <div className="rng-option">
+                    <h2 className="option-title">Min</h2>
+                    <button onClick={() => setMinNumber(minNumber + 1)}>+</button>
+                    <h3>{minNumber}</h3>
+                    <button onClick={() => setMinNumber(minNumber - 1)}>-</button>
+                </div>
+                
+                <div className="rng-option">
+                    <h2 className="option-title">Max</h2>
+                    <button onClick={() => setMaxNumber(maxNumber + 1)}>+</button>
+                    <h3>{maxNumber}</h3>
+                    <button onClick={() => setMaxNumber(maxNumber - 1)}>-</button>
+                </div>
+                
+            </div>
         </div>
     );
 }

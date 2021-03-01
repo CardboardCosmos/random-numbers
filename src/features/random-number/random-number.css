@@ -1,0 +1,23 @@
+.rng-options {
+    position: relative;
+    top: 70vh;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.rng-option {
+    padding: 0 20px;
+}
+
+.option-title {
+    margin-bottom: 1em;
+}
+
+.rng-go-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

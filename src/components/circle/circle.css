@@ -8,6 +8,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    transition: top 0.2s, left 0.2s;
 }
 
 .circle-spin {
