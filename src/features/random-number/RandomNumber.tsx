@@ -6,7 +6,7 @@ const RandomNumber = () => {
     const [speed, setSpeed] = useState(3);
     const [go, setGo] = useState(false);
     const [minNumber, setMinNumber] = useState(1);
-    const [maxNumber, setMaxNumber] = useState(3);
+    const [maxNumber, setMaxNumber] = useState(10);
     const [positions, setPositions] = useState<[number, number][]>([]);
     const [circleSize, setCircleSize] = useState(100);
 
@@ -16,9 +16,10 @@ const RandomNumber = () => {
         const pos: [number, number][] = [];
         const nItems = maxNumber - minNumber + 1;
         const angle = 2 * Math.PI / nItems;  // angle between each item
+        const offset = -1 * Math.PI / 2;     // offset angle
 
         for (let i = 0; i < nItems; i++) {
-            pos.push([Math.cos(angle * i) * radius, Math.sin(angle * i) * radius]);
+            pos.push([Math.cos(angle * i + offset) * radius, Math.sin(angle * i + offset) * radius]);
         }
 
         setPositions(pos);

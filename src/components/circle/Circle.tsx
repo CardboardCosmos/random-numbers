@@ -13,7 +13,8 @@ const Circle = (props: Props) => {
         width: props.size,
         height: props.size,
         left: props.pos[0],
-        top: props.pos[1]
+        top: props.pos[1],
+        fontSize: props.size / 50 * 16
     }
 
     return (
