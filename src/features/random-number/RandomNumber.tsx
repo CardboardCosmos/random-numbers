@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Button from '../../components/button/Button';
 import Circle from '../../components/circle/Circle';
 import Spinner from '../../components/spinner/Spinner';
 import './random-number.css';
@@ -53,7 +54,8 @@ const RandomNumber = () => {
             <div className="rng-options">
                 <div className="rng-option">
                     <h2 className="option-title">Min</h2>
-                    <button onClick={() => updateMin(minNumber + 1)}>+</button>
+                    {/* <button onClick={() => updateMin(minNumber + 1)}>+</button> */}
+                    <Button onClick={() => updateMin(minNumber + 1)}>+</Button>
                     <h3>{minNumber}</h3>
                     <button onClick={() => updateMin(minNumber - 1)}>-</button>
                 </div>
