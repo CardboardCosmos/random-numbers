@@ -28,6 +28,18 @@ const RandomNumber = () => {
 
     }, [minNumber, maxNumber]);
 
+    const updateMin = (n: number) => {
+        setMinNumber(n);
+
+        if (n > maxNumber) setMaxNumber(n);
+    }
+
+    const updateMax = (n: number) => {
+        setMaxNumber(n);
+
+        if (n < minNumber) setMinNumber(n);
+    }
+
     return (
         <div>
             <Spinner speed={speed} go={go}>
@@ -41,16 +53,16 @@ const RandomNumber = () => {
             <div className="rng-options">
                 <div className="rng-option">
                     <h2 className="option-title">Min</h2>
-                    <button onClick={() => setMinNumber(minNumber + 1)}>+</button>
+                    <button onClick={() => updateMin(minNumber + 1)}>+</button>
                     <h3>{minNumber}</h3>
-                    <button onClick={() => setMinNumber(minNumber - 1)}>-</button>
+                    <button onClick={() => updateMin(minNumber - 1)}>-</button>
                 </div>
                 
                 <div className="rng-option">
                     <h2 className="option-title">Max</h2>
-                    <button onClick={() => setMaxNumber(maxNumber + 1)}>+</button>
+                    <button onClick={() => updateMax(maxNumber + 1)}>+</button>
                     <h3>{maxNumber}</h3>
-                    <button onClick={() => setMaxNumber(maxNumber - 1)}>-</button>
+                    <button onClick={() => updateMax(maxNumber - 1)}>-</button>
                 </div>
                 
             </div>
