@@ -1,17 +1,53 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Button from '../../components/button/Button';
 import Circle from '../../components/circle/Circle';
 import Spinner from '../../components/spinner/Spinner';
 import './random-number.css';
 
 const RandomNumber = () => {
-    const [speed, setSpeed] = useState(3);
     const [go, setGo] = useState(false);
     const [minNumber, setMinNumber] = useState(1);
     const [maxNumber, setMaxNumber] = useState(10);
     const [positions, setPositions] = useState<[number, number][]>([]);
     const [circleSize, setCircleSize] = useState(100);
+    const [spinnerPos, setSpinnerPos] = useState(-1000);
+    const [spinnerScale, setSpinnerScale] = useState(1.0);
     const [randomNumber, setRandomNumber] = useState(0);
+
+    const optionsDiv = useRef<HTMLDivElement>(null);
+
+    
+    useEffect(() => {
+        // calculate spinner position (middle of area above options div)
+    const handleResize = () => {
+        
+        if (optionsDiv.current) {
+            // set spinner position
+            setSpinnerPos((window.innerHeight - optionsDiv.current.offsetHeight) / 2);
+
+            // set spinner radius
+            let radiusDimension; // width or height, whichever is smaller 
+            if (window.innerHeight - optionsDiv.current.offsetHeight < window.innerWidth)
+                radiusDimension = window.innerHeight - optionsDiv.current.offsetHeight;
+            else 
+                radiusDimension = window.innerWidth;
+
+            radiusDimension *= 0.3 / 100;
+            setSpinnerScale(radiusDimension);
+            // console.log(radiusDimension)
+
+
+        } else {
+            setSpinnerPos(window.innerHeight / 2);
+        }
+    }
+
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+        console.log('hi')
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // calculate spinning circle radius and item positions
     useEffect(() => {
@@ -53,17 +89,19 @@ const RandomNumber = () => {
 
     return (
         <div>
-            <Spinner speed={speed} go={go}>
-                {positions.map((p, idx) => <Circle key={idx} pos={p} size={circleSize} text={go ? '' : (minNumber + idx).toString()} spin={!go}/>)}
-            </Spinner>
+            <div style={{position: 'absolute', left: '50%', top: spinnerPos, transform: `scale(${spinnerScale})`}}>
+                <Spinner go={go}>
+                    {positions.map((p, idx) => <Circle key={idx} pos={p} size={circleSize} text={go ? '' : (minNumber + idx).toString()} spin={!go}/>)}
+                </Spinner>
 
-            <Button className="rng-go-btn" onClick={() => genRandom()} size={80} visible={!go} > Go </Button>
+                <Button className="rng-go-btn" onClick={() => genRandom()} size={80} visible={!go} > Go </Button>
 
-            <div className={`random-number ${go ? 'random-number-show' : ''}`}>
-                <h1>{randomNumber}</h1>
+                <div className={`random-number ${go ? 'random-number-show' : ''}`}>
+                    <h1>{randomNumber}</h1>
+                </div>
             </div>
 
-            <div className={`rng-options ${go ? 'rng-options-hide' : ''}`}>
+            <div className={`rng-options ${go ? 'rng-options-hide' : ''}`} ref={optionsDiv}>
                 <div className="rng-option">
                     <h2 className="option-title">Min</h2>
                     <Button onClick={() => updateMin(minNumber + 1)} size={30}>+</Button>
