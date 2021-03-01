@@ -13,6 +13,15 @@
 
     margin: auto;
     font-size: 30px;
+
+    user-select: none;
+
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+.btn-hide {
+    opacity: 0;
 }
 
 /* .button p {

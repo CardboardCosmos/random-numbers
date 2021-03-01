@@ -10,10 +10,18 @@
 
     color: #a59ea8;
     background: #131418;
+
+    opacity: 1;
+    transition: opacity 0.2s, bottom 0.2s;
 }
 
 .rng-option {
     padding: 0 25px;
+}
+
+.rng-options-hide {
+    opacity: 0;
+    bottom: -100px;
 }
 
 .option-title {
@@ -29,4 +37,39 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.random-number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    user-select: none;
+
+    font-size: 30px;
+    color: #a59ea8;
+}
+
+.random-number-show {
+    animation: showNumber;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes showNumber {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+
+    90% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.0);
+    }
 }

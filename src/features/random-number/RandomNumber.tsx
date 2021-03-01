@@ -11,6 +11,7 @@ const RandomNumber = () => {
     const [maxNumber, setMaxNumber] = useState(10);
     const [positions, setPositions] = useState<[number, number][]>([]);
     const [circleSize, setCircleSize] = useState(100);
+    const [randomNumber, setRandomNumber] = useState(0);
 
     // calculate spinning circle radius and item positions
     useEffect(() => {
@@ -47,11 +48,13 @@ const RandomNumber = () => {
                 {positions.map((p, idx) => <Circle key={idx} pos={p} size={circleSize} text={go ? '' : (minNumber + idx).toString()} spin={!go}/>)}
             </Spinner>
 
-            <button className="rng-go-btn" onClick={() => setGo(!go)}> {go ? 'Again' : 'Go'} </button>
+            <Button className="rng-go-btn" onClick={() => setGo(!go)} size={80} visible={!go} > {go ? 'Again' : 'Go'} </Button>
 
-            {/* <div style={{background: 'green', width: 150, height: 150, transform:'translate(-50%, -50%)', borderRadius: '50%', top: '50%', left: '50%', position: 'absolute'}}></div> */}
+            <div className={`random-number ${go ? 'random-number-show' : ''}`}>
+                <h1>{randomNumber}</h1>
+            </div>
 
-            <div className="rng-options">
+            <div className={`rng-options ${go ? 'rng-options-hide' : ''}`}>
                 <div className="rng-option">
                     <h2 className="option-title">Min</h2>
                     {/* <button onClick={() => updateMin(minNumber + 1)}>+</button> */}
