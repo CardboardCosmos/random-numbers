@@ -115,7 +115,7 @@ const RandomNumber = () => {
                 
             </div>
 
-            <Button className={`again-btn ${go ? 'show-again-btn' : ''}`} onClick={() => setGo(false)} size={100}>Again</Button>
+            <Button className={`again-btn ${go ? 'show-again-btn' : ''}`} onClick={() => setGo(false)} size={100}>Back</Button>
         </div>
     );
 }
