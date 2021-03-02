@@ -6,6 +6,7 @@ interface Props {
     go: boolean
 }
 
+// constantly rotating element
 const Spinner = (props: Props) => {
     return (
         <div className={`spinner ${props.go ? 'go' : 'spin'}`}>{props.children}</div>

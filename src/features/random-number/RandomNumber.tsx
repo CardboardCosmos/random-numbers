@@ -7,22 +7,26 @@ import { selectMax, setMaxNumber } from './maxNumberSlice';
 import { selectMin, setMinNumber } from './minNumberSlice';
 import './random-number.css';
 
+// generates a random number in range [minNumber, maxNumber]
 const RandomNumber = () => {
     const dispatch = useDispatch();
 
-    const minNumber = useSelector(selectMin);
-    const maxNumber = useSelector(selectMax);
+    // global state
+    const minNumber = useSelector(selectMin);       // smallest possible generated number (inclusive)
+    const maxNumber = useSelector(selectMax);       // largest possible generated number (inclusive)
 
-    const [go, setGo] = useState(false);
-    const [positions, setPositions] = useState<[number, number][]>([]);
-    const [circleSize, setCircleSize] = useState(100);
-    const [spinnerPos, setSpinnerPos] = useState(-1000);
-    const [spinnerScale, setSpinnerScale] = useState(1.0);
-    const [randomNumber, setRandomNumber] = useState(0);
+    // local state
+    const [go, setGo] = useState(false);                                    // is generating number?
+    const [positions, setPositions] = useState<[number, number][]>([]);     // positions of circles in spinner
+    const [circleSize, setCircleSize] = useState(100);                      // diameter of circles in spinner
+    const [spinnerPos, setSpinnerPos] = useState(-1000);                    // spinner position
+    const [spinnerScale, setSpinnerScale] = useState(1.0);                  // spinner scale
+    const [randomNumber, setRandomNumber] = useState(0);                    // generated number
 
     const optionsDiv = useRef<HTMLDivElement>(null);
 
-    
+
+    // calculate spinner position and size
     useEffect(() => {
         // calculate spinner position (middle of area above options div)
         const handleResize = () => {
@@ -52,7 +56,7 @@ const RandomNumber = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // calculate spinning circle radius and item positions
+    // calculate spinning circle item positions
     useEffect(() => {
         const radius = 100;
         const pos: [number, number][] = [];
@@ -92,7 +96,8 @@ const RandomNumber = () => {
 
     return (
         <div>
-            <div style={{position: 'absolute', left: '50%', top: spinnerPos, transform: `scale(${spinnerScale})`}}>
+            {/* Spinner */}
+            <div className="spin-div" style={{top: spinnerPos, transform: `scale(${spinnerScale})`}}>
                 <Spinner go={go}>
                     {positions.map((p, idx) => <Circle key={idx} pos={p} size={circleSize} text={go ? '' : (minNumber + idx).toString()} spin={!go}/>)}
                 </Spinner>
@@ -104,6 +109,7 @@ const RandomNumber = () => {
                 </div>
             </div>
 
+            {/* Options */}
             <div className={`rng-options ${go ? 'rng-options-hide' : ''}`} ref={optionsDiv}>
                 <div className="rng-option">
                     <h2 className="option-title">Min</h2>
@@ -121,6 +127,7 @@ const RandomNumber = () => {
                 
             </div>
 
+            {/* Back Button */}
             <Button className={`again-btn ${go ? 'show-again-btn' : ''}`} onClick={() => setGo(false)} size={100}>Back</Button>
         </div>
     );

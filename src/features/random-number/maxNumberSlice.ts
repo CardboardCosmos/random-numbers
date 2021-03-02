@@ -6,7 +6,7 @@ interface MaxNumberState {
     value: number
 }
 
-const initialState = {
+const initialState: MaxNumberState = {
     value: 10
 }
 
