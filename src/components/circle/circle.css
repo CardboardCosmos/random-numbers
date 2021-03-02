@@ -1,6 +1,7 @@
 .circle {
     border-radius: 50%;
-    background: #8041bb;
+    
+    background: var(--main-color);
 
     position: absolute;
     transform: translate(-50%, -50%);

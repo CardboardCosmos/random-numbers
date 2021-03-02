@@ -8,8 +8,8 @@
     flex-direction: row;
     justify-content: center;
 
-    color: #a59ea8;
-    background: #131418;
+    color: var(--third-color);
+    background: var(--bg-second-color);
 
     opacity: 1;
     transition: opacity 0.2s, bottom 0.2s;
@@ -27,7 +27,7 @@
 .option-title {
     margin-bottom: 1em;
 
-    background: #0c0d11;
+    background: var(--bg-third-color);
     padding: 2px 15px;
     border-radius: 20px;
 }
@@ -48,7 +48,7 @@
     user-select: none;
 
     font-size: 30px;
-    color: #a59ea8;
+    color: var(--third-color);
 }
 
 .random-number-show {

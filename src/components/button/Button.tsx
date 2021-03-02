@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './button.css';
 
 const Button = (props: any) => {
