@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-// import counterReducer from '../features/counter/counterSlice';
+import minReducer from '../features/random-number/minNumberSlice';
+import maxReducer from '../features/random-number/maxNumberSlice';
 
 export const store = configureStore({
   reducer: {
-    // counter: counterReducer,
+    minNumber: minReducer,
+    maxNumber: maxReducer
   },
 });
 

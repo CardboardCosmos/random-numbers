@@ -1,13 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../components/button/Button';
 import Circle from '../../components/circle/Circle';
 import Spinner from '../../components/spinner/Spinner';
+import { selectMax, setMaxNumber } from './maxNumberSlice';
+import { selectMin, setMinNumber } from './minNumberSlice';
 import './random-number.css';
 
 const RandomNumber = () => {
+    const dispatch = useDispatch();
+
+    const minNumber = useSelector(selectMin);
+    const maxNumber = useSelector(selectMax);
+
     const [go, setGo] = useState(false);
-    const [minNumber, setMinNumber] = useState(1);
-    const [maxNumber, setMaxNumber] = useState(10);
     const [positions, setPositions] = useState<[number, number][]>([]);
     const [circleSize, setCircleSize] = useState(100);
     const [spinnerPos, setSpinnerPos] = useState(-1000);
@@ -64,15 +70,15 @@ const RandomNumber = () => {
     }, [minNumber, maxNumber]);
 
     const updateMin = (n: number) => {
-        setMinNumber(n);
+        dispatch(setMinNumber(n));
 
-        if (n > maxNumber) setMaxNumber(n);
+        if (n > maxNumber) dispatch(setMaxNumber(n));
     }
 
     const updateMax = (n: number) => {
-        setMaxNumber(n);
+        dispatch(setMaxNumber(n));
 
-        if (n < minNumber) setMinNumber(n);
+        if (n < minNumber) dispatch(setMinNumber(n));
     }
 
     // generate random number
